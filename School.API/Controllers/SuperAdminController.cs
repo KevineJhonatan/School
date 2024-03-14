@@ -50,6 +50,7 @@ namespace School.API.Controllers
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [AllowAnonymous]
         public IActionResult Login([FromBody] LoginReq request)
         {
             ApiResponse response = new ApiResponse();
@@ -58,6 +59,32 @@ namespace School.API.Controllers
                 var admin = _SuperAdminService.Login(request);
                 string accessToken = _JwtTokenService.GenerateToken(admin.Id, nameof(UserRole.SuperAdmin));
                 response.Data = accessToken;
+            }
+            catch (ExceptionBase ex)
+            {
+                response.Success = false;
+                response.Errors = ex.Errors;
+            }
+            catch (Exception ex)
+            {
+                response.Success = false;
+                response.Errors = ExceptionBase.FetchInnerException(ex);
+            }
+            return Ok(response);
+        }
+
+        [HttpGet("GeneratePassword")]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [Authorize(Roles = nameof(UserRole.SuperAdmin))]
+        public IActionResult GeneratePassword()
+        {
+            ApiResponse response = new ApiResponse();
+            try
+            {
+                var pass = _SuperAdminService.GeneratePassword();
+                response.Data = pass;
             }
             catch (ExceptionBase ex)
             {

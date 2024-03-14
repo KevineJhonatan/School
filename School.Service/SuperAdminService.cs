@@ -1,10 +1,12 @@
-﻿using School.Core.Entities;
+﻿using School.Core;
+using School.Core.Entities;
 using School.Core.Exceptions;
 using School.Core.Helpers;
 using School.Core.Interfaces.Services;
 using School.Core.JsonRequest.SuperAdmin;
 using School.Core.JsonResponse;
 using School.Infrastructure.Interfaces;
+using System;
 using Ecole = School.Core.Entities.School;
 
 namespace School.Service
@@ -29,6 +31,18 @@ namespace School.Service
 
             _SchoolRepo.Insert(new Ecole { Name = request.Name, Description = request.Description, CreatedBy = userId });
             _SchoolRepo.Commit();
+        }
+
+        public string GeneratePassword()
+        {
+            Random random = new Random();
+            string upper = ((char)random.Next('A', 'Z' + 1)).ToString();
+            string lower = ((char)random.Next('a', 'z' + 1)).ToString();
+            string specialChars = "@#$+*!?";
+            string special = (specialChars[random.Next(specialChars.Length)]).ToString();
+            string hash = DateTime.Now.ToString().HashPassword();
+
+            return $"{upper}{lower}{special}{hash.Substring(0, 5)}";
         }
 
         public Admin Login(LoginReq request)

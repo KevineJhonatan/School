@@ -8,5 +8,7 @@ namespace School.Core.Interfaces.Services
         void CreateSchool(CreateSchoolReq request, int userId);
 
         Admin Login(LoginReq request);
+
+        string GeneratePassword();
     }
 }
