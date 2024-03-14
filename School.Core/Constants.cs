@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace School.Core
+﻿namespace School.Core
 {
     public class Constants
     {
+        public const int TOKEN_EXPIRATION_HOUR = 5;
+
         public const string SYSPARAM_ERRORS = "ERRORS";
     }
 }

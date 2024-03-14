@@ -11,6 +11,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
                options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerHandler(builder);
+builder.Services.AddAppSettings(builder);
 
 builder.Services.AddJWTTokenHandler(builder);
 builder.Services.AddAuthorization();

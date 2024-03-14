@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using School.Core.Settings;
 using System.Text;
 
 namespace School.API
@@ -12,7 +13,7 @@ namespace School.API
             services.AddSwaggerGen(option =>
             {
                 option.SwaggerDoc("v1", new OpenApiInfo { Title = "School API", Version = builder.Configuration["Version"] });
-                /*option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Scheme = "Bearer",
                     BearerFormat = "JWT",
@@ -35,7 +36,7 @@ namespace School.API
                         },
                         new List<string>()
                     }
-                });*/
+                });
             });
         }
 
@@ -45,16 +46,29 @@ namespace School.API
             {
                 option.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidIssuer = "builder.Configuration[AppContants.AUTHENTICATION_ISSUER]",
-                    ValidAudience = "builder.Configuration[AppContants.AUTHENTICATION_AUDIENCE]",
+                    ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
+                    ValidAudiences = builder.Configuration.GetSection("JwtSettings:Audiences").Get<List<string>>(),
+                    ValidateIssuer = true,
                     ValidateAudience = true,
                     ValidateIssuerSigningKey = true,
                     ClockSkew = TimeSpan.Zero,
                     RequireExpirationTime = true,
                     ValidAlgorithms = new[] { SecurityAlgorithms.HmacSha256 },
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("builder.Configuration[AppContants.AUTHENTICATION_SECRET_KEY]"))
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:SignInKey"]))
                 };
             });
+        }
+
+        public static void AddAppSettings(this IServiceCollection services, WebApplicationBuilder builder)
+        {
+            var jwtSetting = new JwtSetting
+            {
+                Issuer = builder.Configuration["JwtSettings:Issuer"],
+                Audiences = builder.Configuration.GetSection("JwtSettings:Audiences").Get<List<string>>(),
+                SignInKey = builder.Configuration["JwtSettings:SignInKey"]
+            };
+
+            services.AddSingleton(jwtSetting);
         }
     }
 }

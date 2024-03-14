@@ -1,9 +1,4 @@
 ﻿using School.Core.JsonResponse;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace School.Core.Exceptions
 {
@@ -13,6 +8,23 @@ namespace School.Core.Exceptions
 
         public ExceptionBase(List<Error> errors) {
             this.Errors = errors;
+        }
+
+        public static List<Error> FetchInnerException(Exception exception)
+        {
+            List<Error> result = new List<Error>();
+            while(exception != null)
+            {
+                result.Add(new Error
+                {
+                    ErrorCode = Error.RUNTIME_EXCEPTION,
+                    Message = exception.Message,
+                    Source = exception.Source
+                });
+
+                exception = exception.InnerException;
+            }
+            return result;
         }
     }
 }

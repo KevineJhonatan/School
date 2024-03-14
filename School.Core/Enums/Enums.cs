@@ -5,4 +5,12 @@
         Male = 'M',
         Female = 'F'
     }
+
+    public enum UserRole
+    {
+        SuperAdmin,
+        Admin,
+        Teacher,
+        Tutor
+    }
 }

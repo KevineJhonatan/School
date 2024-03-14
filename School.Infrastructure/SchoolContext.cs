@@ -13,9 +13,31 @@ namespace School.Infrastructure
         {
         }
 
+        public DbSet<Admin> Admins { get; set; }
+
+        public DbSet<Attendance> Attendances { get; set; }
+
+        public DbSet<Class> Classes { get; set; }
+
+        public DbSet<ClassCalendar> ClassCalendars { get; set; }
+
+        public DbSet<Ecole> Schools { get; set; }
+
+        public DbSet<SchoolYear> SchoolYears { get; set; }
+
+        public DbSet<Student> Students { get; set; }
+
+        public DbSet<StudentHistory> StudentHistories { get; set; }
+
+        public DbSet<Subject> Subjects { get; set; }
+
         public DbSet<SysParam> SysParams { get; set; }
 
         public DbSet<SysParamValue> SysParamValues { get; set; }
+
+        public DbSet<Teacher> Teachers { get; set; }
+
+        public DbSet<Tutor> Tutors { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

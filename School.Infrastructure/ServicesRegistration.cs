@@ -15,7 +15,8 @@ namespace School.Infrastructure
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<ISysParamValueRepository, SysParamValueRepository>();
-            
+            services.AddScoped<IAdminRepo, AdminRepo>();
+
 
             return services;
         }
