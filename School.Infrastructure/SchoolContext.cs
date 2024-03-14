@@ -169,14 +169,11 @@ namespace School.Infrastructure
 
             /* LES DES EXCEPTIONS */
 
-            modelBuilder.Entity<SysParam>().HasData(
-                new SysParam { Id = 4, Code = "ERRORS", Title = "Errors", Description = "Errors", CreatedAt = DateTime.Now, CreatedBy = 1 }
-            );
-
-            modelBuilder.Entity<SysParamValue>().HasData(
-                new SysParamValue { Id = 20, Code = "40001", ShortText1 = "Name", LongText1 = "School name is mandatory", SysParamId = 4, CreatedAt = DateTime.Now, CreatedBy = 1 }
-            );
-
+            modelBuilder.Entity<SysParam>().HasData(new SysParam { Id = 4, Code = "ERRORS", Title = "Errors", Description = "Errors", CreatedAt = DateTime.Now, CreatedBy = 1 });
+            modelBuilder.Entity<SysParamValue>().HasData(new SysParamValue { Id = 20, Code = "40001", ShortText1 = "Name", LongText1 = "School name is mandatory", SysParamId = 4, CreatedAt = DateTime.Now, CreatedBy = 1 });
+            modelBuilder.Entity<SysParamValue>().HasData(new SysParamValue { Id = 21, Code = "40002", ShortText1 = "UserId", LongText1 = "Invalid UserId while creating token", SysParamId = 4, CreatedAt = DateTime.Now, CreatedBy = 1 });
+            modelBuilder.Entity<SysParamValue>().HasData(new SysParamValue { Id = 22, Code = "40003", ShortText1 = "UserRole", LongText1 = "Invalid UserRole while creating token", SysParamId = 4, CreatedAt = DateTime.Now, CreatedBy = 1 });
+            modelBuilder.Entity<SysParamValue>().HasData(new SysParamValue { Id = 24, Code = "40004", ShortText1 = "Credentials", LongText1 = "Invalid Login or Password", SysParamId = 4, CreatedAt = DateTime.Now, CreatedBy = 1 });
 
             modelBuilder.Entity<Ecole>().HasData(
                new Ecole { Id = 2, Name = "Vitale", Description = "Vitale", CreatedBy = 1, CreatedAt = DateTime.Now }

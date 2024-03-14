@@ -1,5 +1,4 @@
-﻿using School.Core;
-using School.Core.Entities;
+﻿using School.Core.Entities;
 using School.Core.Exceptions;
 using School.Core.Helpers;
 using School.Core.Interfaces.Services;
@@ -26,14 +25,7 @@ namespace School.Service
         public void CreateSchool(CreateSchoolReq request, int userId)
         {            
             if (string.IsNullOrEmpty(request.Name))
-            {
-                List<Error> errors = new List<Error>();
-                var sysParamError = _SysParamRepo.FindByCode(Constants.SYSPARAM_ERRORS, Error.SCHOOL_NAME_ERROR_CODE.ToString());
-
-                errors.Add(new Error { ErrorCode = Error.SCHOOL_NAME_ERROR_CODE, Message = sysParamError.LongText1, Source = sysParamError.ShortText1 });
-
-                throw new ExceptionBase(errors);
-            }
+                throw new ExceptionBase(new List<Error> { _SysParamRepo.GetErrorByCode(Error.SCHOOL_NAME_ERROR_CODE) });
 
             _SchoolRepo.Insert(new Ecole { Name = request.Name, Description = request.Description, CreatedBy = userId });
             _SchoolRepo.Commit();
@@ -42,16 +34,13 @@ namespace School.Service
         public Admin Login(LoginReq request)
         {
             if(string.IsNullOrEmpty(request.Login) || string.IsNullOrEmpty(request.Password))
-            {
-                throw new ExceptionBase(new List<Error> { new Error { ErrorCode = Error.INVALID_LOGIN_PASSWORD_ERROR_CODE, Message = "Invalid Login or Password", Source = "Credentials" }});
-            }
+                throw new ExceptionBase(new List<Error> { _SysParamRepo.GetErrorByCode(Error.INVALID_LOGIN_PASSWORD_ERROR_CODE) });
 
             request.Login = request.Login.Trim();
             var admin = _AdminRepo.FindByLogin(request.Login, request.Password.HashPassword());
+
             if(admin is null || !admin.IsSuper)
-            {
-                throw new ExceptionBase(new List<Error> { new Error { ErrorCode = Error.INVALID_LOGIN_PASSWORD_ERROR_CODE, Message = "Invalid Login or Password", Source = "Credentials" } });
-            }
+                throw new ExceptionBase(new List<Error> { _SysParamRepo.GetErrorByCode(Error.INVALID_LOGIN_PASSWORD_ERROR_CODE) });
 
             return admin;
         }

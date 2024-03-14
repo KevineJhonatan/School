@@ -4,6 +4,7 @@ using School.Core.Exceptions;
 using School.Core.Interfaces.Services;
 using School.Core.JsonResponse;
 using School.Core.Settings;
+using School.Infrastructure.Interfaces;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -14,17 +15,20 @@ namespace School.Service
     {
         private readonly JwtSetting _JwtSettings;
 
-        public JwtTokenService(JwtSetting jwtSetting)
+        private readonly ISysParamValueRepository _SysParamRepo;
+
+        public JwtTokenService(JwtSetting jwtSetting, ISysParamValueRepository sysParamRepo)
         {
             _JwtSettings = jwtSetting;
+            _SysParamRepo = sysParamRepo;
         }
         public string GenerateToken(int userId, string userRole)
         {
             if (userId <= 0)
-                throw new ExceptionBase(new List<Error> { new Error { ErrorCode = Error.INVALID_USERID_ERROR_CODE, Message = "Invalid UserId while creating token", Source = "UserId"} });
+                throw new ExceptionBase(new List<Error> { _SysParamRepo.GetErrorByCode(Error.INVALID_USERID_ERROR_CODE) });
 
             if (string.IsNullOrEmpty(userRole))
-                throw new ExceptionBase(new List<Error> { new Error { ErrorCode = Error.INVALID_USERROLE_ERROR_CODE, Message = "Invalid UserRole while creating token", Source = "UserRole" } });
+                throw new ExceptionBase(new List<Error> { _SysParamRepo.GetErrorByCode(Error.INVALID_USERROLE_ERROR_CODE) });
 
             userRole = userRole.Trim();
 

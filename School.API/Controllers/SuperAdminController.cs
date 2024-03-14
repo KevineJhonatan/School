@@ -8,7 +8,6 @@ using School.Core.JsonResponse;
 
 namespace School.API.Controllers
 {
-
     [ApiController]
     [Produces("application/json")]
     [Route("api/[controller]")]
