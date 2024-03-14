@@ -1,8 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using School.Core.Entities;
-using System.Reflection.Emit;
-using System.Reflection.Metadata;
 using SchoolClass = School.Core.Entities.School;
 
 namespace School.Infrastructure.Configurations

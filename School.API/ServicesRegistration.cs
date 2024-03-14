@@ -1,4 +1,7 @@
-﻿using Microsoft.OpenApi.Models;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using System.Text;
 
 namespace School.API
 {
@@ -33,6 +36,24 @@ namespace School.API
                         new List<string>()
                     }
                 });*/
+            });
+        }
+
+        public static void AddJWTTokenHandler(this IServiceCollection services, WebApplicationBuilder builder)
+        {
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(option =>
+            {
+                option.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidIssuer = "builder.Configuration[AppContants.AUTHENTICATION_ISSUER]",
+                    ValidAudience = "builder.Configuration[AppContants.AUTHENTICATION_AUDIENCE]",
+                    ValidateAudience = true,
+                    ValidateIssuerSigningKey = true,
+                    ClockSkew = TimeSpan.Zero,
+                    RequireExpirationTime = true,
+                    ValidAlgorithms = new[] { SecurityAlgorithms.HmacSha256 },
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("builder.Configuration[AppContants.AUTHENTICATION_SECRET_KEY]"))
+                };
             });
         }
     }

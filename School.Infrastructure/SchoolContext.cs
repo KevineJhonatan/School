@@ -65,7 +65,7 @@ namespace School.Infrastructure
             );
 
             modelBuilder.Entity<SysParamValue>().HasData(
-               new SysParamValue { Id = 2, Code = "ABSENT", ShortText1 = "Absent", SysParamId = 1, CreatedAt = DateTime.Now, CreatedBy = 2 }
+               new SysParamValue { Id = 2, Code = "ABSENT", ShortText1 = "Absent", SysParamId = 1, CreatedAt = DateTime.Now, CreatedBy = 1 }
             );
 
 
@@ -78,39 +78,39 @@ namespace School.Infrastructure
             );
 
             modelBuilder.Entity<SysParamValue>().HasData(
-               new SysParamValue { Id = 4, Code = "CLASS_LEVEL_2", ShortText1 = "Moyenne section", IntValue1 = 2, SysParamId = 2, CreatedAt = DateTime.Now, CreatedBy = 2 }
+               new SysParamValue { Id = 4, Code = "CLASS_LEVEL_2", ShortText1 = "Moyenne section", IntValue1 = 2, SysParamId = 2, CreatedAt = DateTime.Now, CreatedBy = 1 }
             );
 
             modelBuilder.Entity<SysParamValue>().HasData(
-               new SysParamValue { Id = 5, Code = "CLASS_LEVEL_3", ShortText1 = "Grande section", IntValue1 = 3, SysParamId = 2, CreatedAt = DateTime.Now, CreatedBy = 3 }
+               new SysParamValue { Id = 5, Code = "CLASS_LEVEL_3", ShortText1 = "Grande section", IntValue1 = 3, SysParamId = 2, CreatedAt = DateTime.Now, CreatedBy = 1 }
             );
 
             modelBuilder.Entity<SysParamValue>().HasData(
-               new SysParamValue { Id = 6, Code = "CLASS_LEVEL_4", ShortText1 = "Maternelle", IntValue1 = 4, SysParamId = 2, CreatedAt = DateTime.Now, CreatedBy = 4 }
+               new SysParamValue { Id = 6, Code = "CLASS_LEVEL_4", ShortText1 = "Maternelle", IntValue1 = 4, SysParamId = 2, CreatedAt = DateTime.Now, CreatedBy = 1 }
             );
 
             modelBuilder.Entity<SysParamValue>().HasData(
-               new SysParamValue { Id = 7, Code = "CLASS_LEVEL_5", ShortText1 = "12 ème", IntValue1 = 5, SysParamId = 2, CreatedAt = DateTime.Now, CreatedBy = 5 }
+               new SysParamValue { Id = 7, Code = "CLASS_LEVEL_5", ShortText1 = "12 ème", IntValue1 = 5, SysParamId = 2, CreatedAt = DateTime.Now, CreatedBy = 1 }
             );
 
             modelBuilder.Entity<SysParamValue>().HasData(
-               new SysParamValue { Id = 8, Code = "CLASS_LEVEL_6", ShortText1 = "11 ème", IntValue1 = 6, SysParamId = 2, CreatedAt = DateTime.Now, CreatedBy = 6 }
+               new SysParamValue { Id = 8, Code = "CLASS_LEVEL_6", ShortText1 = "11 ème", IntValue1 = 6, SysParamId = 2, CreatedAt = DateTime.Now, CreatedBy = 1 }
             );
 
             modelBuilder.Entity<SysParamValue>().HasData(
-               new SysParamValue { Id = 9, Code = "CLASS_LEVEL_7", ShortText1 = "10 ème", IntValue1 = 7, SysParamId = 2, CreatedAt = DateTime.Now, CreatedBy = 7 }
+               new SysParamValue { Id = 9, Code = "CLASS_LEVEL_7", ShortText1 = "10 ème", IntValue1 = 7, SysParamId = 2, CreatedAt = DateTime.Now, CreatedBy = 1 }
             );
 
             modelBuilder.Entity<SysParamValue>().HasData(
-               new SysParamValue { Id = 10, Code = "CLASS_LEVEL_8", ShortText1 = "0 ème", IntValue1 = 8, SysParamId = 2, CreatedAt = DateTime.Now, CreatedBy = 8 }
+               new SysParamValue { Id = 10, Code = "CLASS_LEVEL_8", ShortText1 = "0 ème", IntValue1 = 8, SysParamId = 2, CreatedAt = DateTime.Now, CreatedBy = 1 }
             );
 
             modelBuilder.Entity<SysParamValue>().HasData(
-               new SysParamValue { Id = 11, Code = "CLASS_LEVEL_9", ShortText1 = "8 ème", IntValue1 = 9, SysParamId = 2, CreatedAt = DateTime.Now, CreatedBy = 9 }
+               new SysParamValue { Id = 11, Code = "CLASS_LEVEL_9", ShortText1 = "8 ème", IntValue1 = 9, SysParamId = 2, CreatedAt = DateTime.Now, CreatedBy = 1 }
             );
 
             modelBuilder.Entity<SysParamValue>().HasData(
-               new SysParamValue { Id = 12, Code = "CLASS_LEVEL_10", ShortText1 = "7 ème", IntValue1 = 10, SysParamId = 2, CreatedAt = DateTime.Now, CreatedBy = 10 }
+               new SysParamValue { Id = 12, Code = "CLASS_LEVEL_10", ShortText1 = "7 ème", IntValue1 = 10, SysParamId = 2, CreatedAt = DateTime.Now, CreatedBy = 1 }
             );
 
             modelBuilder.Entity<SysParam>().HasData(
@@ -118,32 +118,42 @@ namespace School.Infrastructure
             );
 
             modelBuilder.Entity<SysParamValue>().HasData(
-                new SysParamValue { Id = 13, Code = "MONDAY", ShortText1 = "Lundi", IntValue1 = 1, SysParamId = 3, CreatedAt = DateTime.Now, CreatedBy = 13 }
+                new SysParamValue { Id = 13, Code = "MONDAY", ShortText1 = "Lundi", IntValue1 = 1, SysParamId = 3, CreatedAt = DateTime.Now, CreatedBy = 1 }
             );
 
             modelBuilder.Entity<SysParamValue>().HasData(
-                new SysParamValue { Id = 14, Code = "TUESDAY", ShortText1 = "Mardi", IntValue1 = 2, SysParamId = 3, CreatedAt = DateTime.Now, CreatedBy = 14 }
+                new SysParamValue { Id = 14, Code = "TUESDAY", ShortText1 = "Mardi", IntValue1 = 2, SysParamId = 3, CreatedAt = DateTime.Now, CreatedBy = 1 }
             );
 
             modelBuilder.Entity<SysParamValue>().HasData(
-                new SysParamValue { Id = 15, Code = "WEDNESDAY", ShortText1 = "Mercredi", IntValue1 = 3, SysParamId = 3, CreatedAt = DateTime.Now, CreatedBy = 15 }
+                new SysParamValue { Id = 15, Code = "WEDNESDAY", ShortText1 = "Mercredi", IntValue1 = 3, SysParamId = 3, CreatedAt = DateTime.Now, CreatedBy = 1 }
             );
 
             modelBuilder.Entity<SysParamValue>().HasData(
-                new SysParamValue { Id = 16, Code = "THURSDAY", ShortText1 = "Jeudi", IntValue1 = 4, SysParamId = 3, CreatedAt = DateTime.Now, CreatedBy = 16 }
+                new SysParamValue { Id = 16, Code = "THURSDAY", ShortText1 = "Jeudi", IntValue1 = 4, SysParamId = 3, CreatedAt = DateTime.Now, CreatedBy = 1 }
             );
 
             modelBuilder.Entity<SysParamValue>().HasData(
-                new SysParamValue { Id = 17, Code = "FRIDAY", ShortText1 = "Vendredi", IntValue1 = 5, SysParamId = 3, CreatedAt = DateTime.Now, CreatedBy = 17 }
+                new SysParamValue { Id = 17, Code = "FRIDAY", ShortText1 = "Vendredi", IntValue1 = 5, SysParamId = 3, CreatedAt = DateTime.Now, CreatedBy = 1 }
             );
 
             modelBuilder.Entity<SysParamValue>().HasData(
-                new SysParamValue { Id = 18, Code = "SATURDAY", ShortText1 = "Samedi", IntValue1 = 6, SysParamId = 3, CreatedAt = DateTime.Now, CreatedBy = 18 }
+                new SysParamValue { Id = 18, Code = "SATURDAY", ShortText1 = "Samedi", IntValue1 = 6, SysParamId = 3, CreatedAt = DateTime.Now, CreatedBy = 1 }
             );
 
             modelBuilder.Entity<SysParamValue>().HasData(
-                new SysParamValue { Id = 19, Code = "SUNDAY", ShortText1 = "Dimanche", IntValue1 = 7, SysParamId = 3, CreatedAt = DateTime.Now, CreatedBy = 19 }
+                new SysParamValue { Id = 19, Code = "SUNDAY", ShortText1 = "Dimanche", IntValue1 = 7, SysParamId = 3, CreatedAt = DateTime.Now, CreatedBy = 1 }
            );
+
+            /* LES DES EXCEPTIONS */
+
+            modelBuilder.Entity<SysParam>().HasData(
+                new SysParam { Id = 4, Code = "ERRORS", Title = "Errors", Description = "Errors", CreatedAt = DateTime.Now, CreatedBy = 1 }
+            );
+
+            modelBuilder.Entity<SysParamValue>().HasData(
+                new SysParamValue { Id = 20, Code = "40001", ShortText1 = "Name", LongText1 = "School name is mandatory", SysParamId = 4, CreatedAt = DateTime.Now, CreatedBy = 1 }
+            );
 
 
             modelBuilder.Entity<Ecole>().HasData(

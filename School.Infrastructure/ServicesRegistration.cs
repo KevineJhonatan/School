@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using School.Infrastructure.Interfaces;
 
 namespace School.Infrastructure
 {
@@ -11,6 +12,10 @@ namespace School.Infrastructure
             {
                 options.UseSqlServer("name=ConnectionStrings:DefaultConnection");
             });
+
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped<ISysParamValueRepository, SysParamValueRepository>();
+            
 
             return services;
         }
