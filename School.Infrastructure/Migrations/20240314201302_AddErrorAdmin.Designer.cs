@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using School.Infrastructure;
 
@@ -11,9 +12,11 @@ using School.Infrastructure;
 namespace School.Infrastructure.Migrations
 {
     [DbContext(typeof(SchoolContext))]
-    partial class SchoolContextModelSnapshot : ModelSnapshot
+    [Migration("20240314201302_AddErrorAdmin")]
+    partial class AddErrorAdmin
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -98,9 +101,9 @@ namespace School.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(1831),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 174, DateTimeKind.Local).AddTicks(6953),
                             CreatedBy = 1,
-                            DOB = new DateTime(2024, 3, 14, 23, 32, 45, 916, DateTimeKind.Local).AddTicks(1844),
+                            DOB = new DateTime(2024, 3, 14, 23, 13, 2, 170, DateTimeKind.Local).AddTicks(324),
                             Firstname = "Admin",
                             Gender = "M",
                             IsSuper = true,
@@ -112,9 +115,9 @@ namespace School.Infrastructure.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 924, DateTimeKind.Local).AddTicks(2650),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 178, DateTimeKind.Local).AddTicks(5370),
                             CreatedBy = 1,
-                            DOB = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(2618),
+                            DOB = new DateTime(2024, 3, 14, 23, 13, 2, 174, DateTimeKind.Local).AddTicks(7916),
                             Firstname = "Camil",
                             Gender = "M",
                             IsSuper = false,
@@ -233,7 +236,7 @@ namespace School.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 924, DateTimeKind.Local).AddTicks(2803),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 178, DateTimeKind.Local).AddTicks(5424),
                             CreatedBy = 2,
                             Description = "",
                             Level_Id = 6,
@@ -243,7 +246,7 @@ namespace School.Infrastructure.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 924, DateTimeKind.Local).AddTicks(2823),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 178, DateTimeKind.Local).AddTicks(5441),
                             CreatedBy = 2,
                             Description = "",
                             Level_Id = 7,
@@ -253,7 +256,7 @@ namespace School.Infrastructure.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 924, DateTimeKind.Local).AddTicks(2838),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 178, DateTimeKind.Local).AddTicks(5454),
                             CreatedBy = 2,
                             Description = "",
                             Level_Id = 8,
@@ -263,7 +266,7 @@ namespace School.Infrastructure.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 924, DateTimeKind.Local).AddTicks(2854),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 178, DateTimeKind.Local).AddTicks(5467),
                             CreatedBy = 2,
                             Description = "",
                             Level_Id = 9,
@@ -273,7 +276,7 @@ namespace School.Infrastructure.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 924, DateTimeKind.Local).AddTicks(2870),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 178, DateTimeKind.Local).AddTicks(5480),
                             CreatedBy = 2,
                             Description = "",
                             Level_Id = 10,
@@ -283,7 +286,7 @@ namespace School.Infrastructure.Migrations
                         new
                         {
                             Id = 6,
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 924, DateTimeKind.Local).AddTicks(2892),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 178, DateTimeKind.Local).AddTicks(5494),
                             CreatedBy = 2,
                             Description = "",
                             Level_Id = 11,
@@ -293,7 +296,7 @@ namespace School.Infrastructure.Migrations
                         new
                         {
                             Id = 7,
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 924, DateTimeKind.Local).AddTicks(2907),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 178, DateTimeKind.Local).AddTicks(5508),
                             CreatedBy = 2,
                             Description = "",
                             Level_Id = 12,
@@ -413,7 +416,7 @@ namespace School.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 916, DateTimeKind.Local).AddTicks(1774),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 170, DateTimeKind.Local).AddTicks(246),
                             CreatedBy = 1,
                             Description = "AdminSchool",
                             IsActive = false,
@@ -422,7 +425,7 @@ namespace School.Infrastructure.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(2601),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 174, DateTimeKind.Local).AddTicks(7896),
                             CreatedBy = 1,
                             Description = "Vitale",
                             Name = "Vitale"
@@ -477,7 +480,7 @@ namespace School.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 924, DateTimeKind.Local).AddTicks(2766),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 178, DateTimeKind.Local).AddTicks(5401),
                             CreatedBy = 2,
                             EndDate = new DateTime(2024, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SchoolId = 2,
@@ -692,7 +695,7 @@ namespace School.Infrastructure.Migrations
                         {
                             Id = 1,
                             Code = "ATTENDANCE_STATUS",
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(1952),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 174, DateTimeKind.Local).AddTicks(7172),
                             CreatedBy = 1,
                             Description = "Présence",
                             Title = "Présence"
@@ -701,7 +704,7 @@ namespace School.Infrastructure.Migrations
                         {
                             Id = 2,
                             Code = "CLASS_LEVEL",
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(2019),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 174, DateTimeKind.Local).AddTicks(7241),
                             CreatedBy = 1,
                             Description = "Niveau",
                             Title = "Niveau"
@@ -710,7 +713,7 @@ namespace School.Infrastructure.Migrations
                         {
                             Id = 3,
                             Code = "DAY_OF_WEEK",
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(2198),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 174, DateTimeKind.Local).AddTicks(7555),
                             CreatedBy = 1,
                             Description = "Jours de la semaine",
                             Title = "Jours de la semaine"
@@ -719,7 +722,7 @@ namespace School.Infrastructure.Migrations
                         {
                             Id = 4,
                             Code = "ERRORS",
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(2382),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 174, DateTimeKind.Local).AddTicks(7666),
                             CreatedBy = 1,
                             Description = "Errors",
                             Title = "Errors"
@@ -789,7 +792,7 @@ namespace School.Infrastructure.Migrations
                         {
                             Id = 1,
                             Code = "PRESENT",
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(1981),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 174, DateTimeKind.Local).AddTicks(7207),
                             CreatedBy = 1,
                             ShortText1 = "Present",
                             SysParamId = 1
@@ -798,7 +801,7 @@ namespace School.Infrastructure.Migrations
                         {
                             Id = 2,
                             Code = "ABSENT",
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(2001),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 174, DateTimeKind.Local).AddTicks(7225),
                             CreatedBy = 1,
                             ShortText1 = "Absent",
                             SysParamId = 1
@@ -807,7 +810,7 @@ namespace School.Infrastructure.Migrations
                         {
                             Id = 3,
                             Code = "CLASS_LEVEL_1",
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(2036),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 174, DateTimeKind.Local).AddTicks(7257),
                             CreatedBy = 1,
                             IntValue1 = 1,
                             ShortText1 = "Petite section",
@@ -817,7 +820,7 @@ namespace School.Infrastructure.Migrations
                         {
                             Id = 4,
                             Code = "CLASS_LEVEL_2",
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(2053),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 174, DateTimeKind.Local).AddTicks(7271),
                             CreatedBy = 1,
                             IntValue1 = 2,
                             ShortText1 = "Moyenne section",
@@ -827,7 +830,7 @@ namespace School.Infrastructure.Migrations
                         {
                             Id = 5,
                             Code = "CLASS_LEVEL_3",
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(2069),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 174, DateTimeKind.Local).AddTicks(7285),
                             CreatedBy = 1,
                             IntValue1 = 3,
                             ShortText1 = "Grande section",
@@ -837,7 +840,7 @@ namespace School.Infrastructure.Migrations
                         {
                             Id = 6,
                             Code = "CLASS_LEVEL_4",
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(2091),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 174, DateTimeKind.Local).AddTicks(7306),
                             CreatedBy = 1,
                             IntValue1 = 4,
                             ShortText1 = "Maternelle",
@@ -847,7 +850,7 @@ namespace School.Infrastructure.Migrations
                         {
                             Id = 7,
                             Code = "CLASS_LEVEL_5",
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(2107),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 174, DateTimeKind.Local).AddTicks(7319),
                             CreatedBy = 1,
                             IntValue1 = 5,
                             ShortText1 = "12 ème",
@@ -857,7 +860,7 @@ namespace School.Infrastructure.Migrations
                         {
                             Id = 8,
                             Code = "CLASS_LEVEL_6",
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(2123),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 174, DateTimeKind.Local).AddTicks(7333),
                             CreatedBy = 1,
                             IntValue1 = 6,
                             ShortText1 = "11 ème",
@@ -867,7 +870,7 @@ namespace School.Infrastructure.Migrations
                         {
                             Id = 9,
                             Code = "CLASS_LEVEL_7",
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(2137),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 174, DateTimeKind.Local).AddTicks(7346),
                             CreatedBy = 1,
                             IntValue1 = 7,
                             ShortText1 = "10 ème",
@@ -877,7 +880,7 @@ namespace School.Infrastructure.Migrations
                         {
                             Id = 10,
                             Code = "CLASS_LEVEL_8",
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(2154),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 174, DateTimeKind.Local).AddTicks(7361),
                             CreatedBy = 1,
                             IntValue1 = 8,
                             ShortText1 = "0 ème",
@@ -887,7 +890,7 @@ namespace School.Infrastructure.Migrations
                         {
                             Id = 11,
                             Code = "CLASS_LEVEL_9",
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(2168),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 174, DateTimeKind.Local).AddTicks(7375),
                             CreatedBy = 1,
                             IntValue1 = 9,
                             ShortText1 = "8 ème",
@@ -897,7 +900,7 @@ namespace School.Infrastructure.Migrations
                         {
                             Id = 12,
                             Code = "CLASS_LEVEL_10",
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(2183),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 174, DateTimeKind.Local).AddTicks(7539),
                             CreatedBy = 1,
                             IntValue1 = 10,
                             ShortText1 = "7 ème",
@@ -907,7 +910,7 @@ namespace School.Infrastructure.Migrations
                         {
                             Id = 13,
                             Code = "MONDAY",
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(2214),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 174, DateTimeKind.Local).AddTicks(7569),
                             CreatedBy = 1,
                             IntValue1 = 1,
                             ShortText1 = "Lundi",
@@ -917,7 +920,7 @@ namespace School.Infrastructure.Migrations
                         {
                             Id = 14,
                             Code = "TUESDAY",
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(2229),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 174, DateTimeKind.Local).AddTicks(7583),
                             CreatedBy = 1,
                             IntValue1 = 2,
                             ShortText1 = "Mardi",
@@ -927,7 +930,7 @@ namespace School.Infrastructure.Migrations
                         {
                             Id = 15,
                             Code = "WEDNESDAY",
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(2245),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 174, DateTimeKind.Local).AddTicks(7597),
                             CreatedBy = 1,
                             IntValue1 = 3,
                             ShortText1 = "Mercredi",
@@ -937,7 +940,7 @@ namespace School.Infrastructure.Migrations
                         {
                             Id = 16,
                             Code = "THURSDAY",
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(2260),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 174, DateTimeKind.Local).AddTicks(7610),
                             CreatedBy = 1,
                             IntValue1 = 4,
                             ShortText1 = "Jeudi",
@@ -947,7 +950,7 @@ namespace School.Infrastructure.Migrations
                         {
                             Id = 17,
                             Code = "FRIDAY",
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(2275),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 174, DateTimeKind.Local).AddTicks(7623),
                             CreatedBy = 1,
                             IntValue1 = 5,
                             ShortText1 = "Vendredi",
@@ -957,7 +960,7 @@ namespace School.Infrastructure.Migrations
                         {
                             Id = 18,
                             Code = "SATURDAY",
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(2347),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 174, DateTimeKind.Local).AddTicks(7640),
                             CreatedBy = 1,
                             IntValue1 = 6,
                             ShortText1 = "Samedi",
@@ -967,7 +970,7 @@ namespace School.Infrastructure.Migrations
                         {
                             Id = 19,
                             Code = "SUNDAY",
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(2367),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 174, DateTimeKind.Local).AddTicks(7653),
                             CreatedBy = 1,
                             IntValue1 = 7,
                             ShortText1 = "Dimanche",
@@ -977,7 +980,7 @@ namespace School.Infrastructure.Migrations
                         {
                             Id = 20,
                             Code = "40001",
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(2398),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 174, DateTimeKind.Local).AddTicks(7679),
                             CreatedBy = 1,
                             LongText1 = "School name is mandatory",
                             ShortText1 = "Name",
@@ -987,7 +990,7 @@ namespace School.Infrastructure.Migrations
                         {
                             Id = 21,
                             Code = "40002",
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(2414),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 174, DateTimeKind.Local).AddTicks(7692),
                             CreatedBy = 1,
                             LongText1 = "Invalid UserId while creating token",
                             ShortText1 = "UserId",
@@ -997,7 +1000,7 @@ namespace School.Infrastructure.Migrations
                         {
                             Id = 22,
                             Code = "40003",
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(2428),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 174, DateTimeKind.Local).AddTicks(7706),
                             CreatedBy = 1,
                             LongText1 = "Invalid UserRole while creating token",
                             ShortText1 = "UserRole",
@@ -1007,7 +1010,7 @@ namespace School.Infrastructure.Migrations
                         {
                             Id = 24,
                             Code = "40004",
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(2444),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 174, DateTimeKind.Local).AddTicks(7719),
                             CreatedBy = 1,
                             LongText1 = "Invalid Login or Password",
                             ShortText1 = "Credentials",
@@ -1017,7 +1020,7 @@ namespace School.Infrastructure.Migrations
                         {
                             Id = 25,
                             Code = "40005",
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(2458),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 174, DateTimeKind.Local).AddTicks(7732),
                             CreatedBy = 1,
                             LongText1 = "Invalid Firstname",
                             ShortText1 = "Firstname",
@@ -1027,7 +1030,7 @@ namespace School.Infrastructure.Migrations
                         {
                             Id = 26,
                             Code = "40006",
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(2473),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 174, DateTimeKind.Local).AddTicks(7745),
                             CreatedBy = 1,
                             LongText1 = "Invalid Lastname",
                             ShortText1 = "Lastname",
@@ -1037,7 +1040,7 @@ namespace School.Infrastructure.Migrations
                         {
                             Id = 27,
                             Code = "40007",
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(2488),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 174, DateTimeKind.Local).AddTicks(7759),
                             CreatedBy = 1,
                             LongText1 = "Invalid Birthdate",
                             ShortText1 = "Birthdate",
@@ -1047,7 +1050,7 @@ namespace School.Infrastructure.Migrations
                         {
                             Id = 28,
                             Code = "40008",
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(2502),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 174, DateTimeKind.Local).AddTicks(7772),
                             CreatedBy = 1,
                             LongText1 = "Invalid Birthdate format. The valid format is 'dd/MM/yyyy'",
                             ShortText1 = "Birthdate",
@@ -1057,7 +1060,7 @@ namespace School.Infrastructure.Migrations
                         {
                             Id = 29,
                             Code = "40009",
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(2517),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 174, DateTimeKind.Local).AddTicks(7785),
                             CreatedBy = 1,
                             LongText1 = "Invalid Gender. The only valid gender is 'M' or 'F'",
                             ShortText1 = "Gender",
@@ -1067,7 +1070,7 @@ namespace School.Infrastructure.Migrations
                         {
                             Id = 30,
                             Code = "40010",
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(2532),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 174, DateTimeKind.Local).AddTicks(7798),
                             CreatedBy = 1,
                             LongText1 = "Invalid Login for Admin",
                             ShortText1 = "Login",
@@ -1077,7 +1080,7 @@ namespace School.Infrastructure.Migrations
                         {
                             Id = 40,
                             Code = "40011",
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(2546),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 174, DateTimeKind.Local).AddTicks(7811),
                             CreatedBy = 1,
                             LongText1 = "Invalid Password",
                             ShortText1 = "Password",
@@ -1087,20 +1090,10 @@ namespace School.Infrastructure.Migrations
                         {
                             Id = 41,
                             Code = "40012",
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(2560),
+                            CreatedAt = new DateTime(2024, 3, 14, 23, 13, 2, 174, DateTimeKind.Local).AddTicks(7870),
                             CreatedBy = 1,
                             LongText1 = "The specified school does not exist",
                             ShortText1 = "SchoolID",
-                            SysParamId = 4
-                        },
-                        new
-                        {
-                            Id = 42,
-                            Code = "40013",
-                            CreatedAt = new DateTime(2024, 3, 14, 23, 32, 45, 920, DateTimeKind.Local).AddTicks(2575),
-                            CreatedBy = 1,
-                            LongText1 = "The specified login already exist",
-                            ShortText1 = "Login",
                             SysParamId = 4
                         });
                 });

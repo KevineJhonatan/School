@@ -4,6 +4,8 @@ namespace School.Infrastructure.Interfaces
 {
     public interface IAdminRepo
     {
-        Admin FindByLogin(string login, string password);
+        Admin FindByLoginAndPassword(string login, string password);
+
+        Admin FindByLogin(string login);
     }
 }

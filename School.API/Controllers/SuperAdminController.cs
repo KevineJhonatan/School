@@ -5,6 +5,7 @@ using School.Core.Exceptions;
 using School.Core.Interfaces.Services;
 using School.Core.JsonRequest.SuperAdmin;
 using School.Core.JsonResponse;
+using System.Security.Claims;
 
 namespace School.API.Controllers
 {
@@ -33,12 +34,39 @@ namespace School.API.Controllers
             ApiResponse response = new ApiResponse();
             try
             {
-                _SuperAdminService.CreateSchool(request, 1);
+                int userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+                _SuperAdminService.CreateSchool(request, userId);
             } catch (ExceptionBase ex)
             {
                 response.Success = false;
                 response.Errors = ex.Errors;
             } catch (Exception  ex)
+            {
+                response.Success = false;
+                response.Errors = ExceptionBase.FetchInnerException(ex);
+            }
+            return Ok(response);
+        }
+
+        [HttpPost("CreateAdmin")]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [Authorize(Roles = nameof(UserRole.SuperAdmin))]
+        public IActionResult CreateAdmin([FromBody] CreateAdminReq request)
+        {
+            ApiResponse response = new ApiResponse();
+            try
+            {
+                int userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+                _SuperAdminService.CreateAdmin(request, userId);
+            }
+            catch (ExceptionBase ex)
+            {
+                response.Success = false;
+                response.Errors = ex.Errors;
+            }
+            catch (Exception ex)
             {
                 response.Success = false;
                 response.Errors = ExceptionBase.FetchInnerException(ex);

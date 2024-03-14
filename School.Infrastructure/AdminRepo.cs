@@ -9,7 +9,12 @@ namespace School.Infrastructure
         {
         }
 
-        public Admin FindByLogin(string login, string password)
+        public Admin FindByLogin(string login)
+        {
+            return _Context.Admins.FirstOrDefault(x => x.Login == login);
+        }
+
+        public Admin FindByLoginAndPassword(string login, string password)
         {
             return _Context.Admins.FirstOrDefault(x => x.Login == login && x.Password == password);
         }

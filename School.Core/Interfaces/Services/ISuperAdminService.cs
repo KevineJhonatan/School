@@ -10,5 +10,8 @@ namespace School.Core.Interfaces.Services
         Admin Login(LoginReq request);
 
         string GeneratePassword();
+
+        void CreateAdmin(CreateAdminReq request, int userId);
+        
     }
 }

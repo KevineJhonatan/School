@@ -175,6 +175,16 @@ namespace School.Infrastructure
             modelBuilder.Entity<SysParamValue>().HasData(new SysParamValue { Id = 22, Code = "40003", ShortText1 = "UserRole", LongText1 = "Invalid UserRole while creating token", SysParamId = 4, CreatedAt = DateTime.Now, CreatedBy = 1 });
             modelBuilder.Entity<SysParamValue>().HasData(new SysParamValue { Id = 24, Code = "40004", ShortText1 = "Credentials", LongText1 = "Invalid Login or Password", SysParamId = 4, CreatedAt = DateTime.Now, CreatedBy = 1 });
 
+            modelBuilder.Entity<SysParamValue>().HasData(new SysParamValue { Id = 25, Code = "40005", ShortText1 = "Firstname", LongText1 = "Invalid Firstname", SysParamId = 4, CreatedAt = DateTime.Now, CreatedBy = 1 });
+            modelBuilder.Entity<SysParamValue>().HasData(new SysParamValue { Id = 26, Code = "40006", ShortText1 = "Lastname", LongText1 = "Invalid Lastname", SysParamId = 4, CreatedAt = DateTime.Now, CreatedBy = 1 });
+            modelBuilder.Entity<SysParamValue>().HasData(new SysParamValue { Id = 27, Code = "40007", ShortText1 = "Birthdate", LongText1 = "Invalid Birthdate", SysParamId = 4, CreatedAt = DateTime.Now, CreatedBy = 1 });
+            modelBuilder.Entity<SysParamValue>().HasData(new SysParamValue { Id = 28, Code = "40008", ShortText1 = "Birthdate", LongText1 = "Invalid Birthdate format. The valid format is 'dd/MM/yyyy'", SysParamId = 4, CreatedAt = DateTime.Now, CreatedBy = 1 });
+            modelBuilder.Entity<SysParamValue>().HasData(new SysParamValue { Id = 29, Code = "40009", ShortText1 = "Gender", LongText1 = "Invalid Gender. The only valid gender is 'M' or 'F'", SysParamId = 4, CreatedAt = DateTime.Now, CreatedBy = 1 });
+            modelBuilder.Entity<SysParamValue>().HasData(new SysParamValue { Id = 30, Code = "40010", ShortText1 = "Login", LongText1 = "Invalid Login for Admin", SysParamId = 4, CreatedAt = DateTime.Now, CreatedBy = 1 });
+            modelBuilder.Entity<SysParamValue>().HasData(new SysParamValue { Id = 40, Code = "40011", ShortText1 = "Password", LongText1 = "Invalid Password", SysParamId = 4, CreatedAt = DateTime.Now, CreatedBy = 1 });
+            modelBuilder.Entity<SysParamValue>().HasData(new SysParamValue { Id = 41, Code = "40012", ShortText1 = "SchoolID", LongText1 = "The specified school does not exist", SysParamId = 4, CreatedAt = DateTime.Now, CreatedBy = 1 });
+            modelBuilder.Entity<SysParamValue>().HasData(new SysParamValue { Id = 42, Code = "40013", ShortText1 = "Login", LongText1 = "The specified login already exist", SysParamId = 4, CreatedAt = DateTime.Now, CreatedBy = 1 });
+
             modelBuilder.Entity<Ecole>().HasData(
                new Ecole { Id = 2, Name = "Vitale", Description = "Vitale", CreatedBy = 1, CreatedAt = DateTime.Now }
             );
