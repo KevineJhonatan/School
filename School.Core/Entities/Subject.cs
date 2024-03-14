@@ -8,5 +8,8 @@ namespace School.Core.Entities
         public string Name { get; set; }
 
         public string Description { get; set; }
+
+        public virtual int ClassId { get; set; }
+        public virtual Class? Class { get; set; }
     }
 }

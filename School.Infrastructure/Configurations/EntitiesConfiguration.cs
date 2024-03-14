@@ -39,6 +39,8 @@ namespace School.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<Subject> builder)
         {
+            builder.HasOne(x => x.Class).WithMany().HasForeignKey(x => x.ClassId).HasPrincipalKey(x => x.Id).OnDelete(DeleteBehavior.Restrict);
+
             builder.Property(x => x.Name).HasMaxLength(250).IsRequired();
             builder.Property(x => x.Description).HasMaxLength(1000).IsRequired(false);
             builder.Property(x => x.IsActive).HasDefaultValue(true).IsRequired();
