@@ -105,7 +105,7 @@ namespace School.API.Controllers
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        //TODO [Authorize(Roles = nameof(UserRole.SuperAdmin))]
+        [Authorize(Roles = nameof(UserRole.SuperAdmin))]
         public IActionResult GeneratePassword()
         {
             ApiResponse response = new ApiResponse();
@@ -131,13 +131,13 @@ namespace School.API.Controllers
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        //TODO [Authorize(Roles = nameof(UserRole.SuperAdmin))]
+        [Authorize(Roles = nameof(UserRole.SuperAdmin))]
         public IActionResult UpdateAdminPassword(UpdateAdminPasswordReq request)
         {
             ApiResponse response = new ApiResponse();
             try
             {
-                int userId = 1; //TODO int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+                int userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
                 _SuperAdminService.UpdateAdminPassword(request, userId);
             }
             catch (ExceptionBase ex)

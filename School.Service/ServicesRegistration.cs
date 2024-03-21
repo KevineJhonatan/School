@@ -10,6 +10,7 @@ namespace School.Infrastructure
         {
             services.AddScoped<ISuperAdminService, SuperAdminService>();
             services.AddScoped<IJwtTokenService, JwtTokenService>();
+            services.AddScoped<IAdminService, AdminService>();
 
             return services;
         }

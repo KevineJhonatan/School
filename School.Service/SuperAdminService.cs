@@ -73,7 +73,7 @@ namespace School.Service
             }
 
             var school = _SchoolRepo.Find(request.SchoolId).FirstOrDefault();
-            if (school is null || !school.IsActive.Value)
+            if (school is null || !(bool)school.IsActive)
             {
                 errors.Add(_SysParamRepo.GetErrorByCode(Error.INEXISTING_SCHOOL_ERROR_CODE, $" SchoolID = {request.SchoolId}"));
                 throw new ExceptionBase(errors);
@@ -120,7 +120,7 @@ namespace School.Service
             request.Login = request.Login.Trim();
             var admin = _AdminRepo.FindByLoginAndPassword(request.Login, request.Password.HashPassword());
 
-            if (admin is null || !admin.IsSuper)
+            if (admin is null || !admin.IsSuper || !(bool)admin.IsActive)
                 throw new ExceptionBase(new List<Error> { _SysParamRepo.GetErrorByCode(Error.INVALID_LOGIN_PASSWORD_ERROR_CODE) });
 
             return admin;
