@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -51,25 +52,6 @@ namespace School.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Student", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Subject",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
-                    CreatedAt = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "GETDATE()"),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime", nullable: true),
-                    CreatedBy = table.Column<int>(type: "int", nullable: false),
-                    UpdatedBy = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Subject", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -269,6 +251,71 @@ namespace School.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "StudentHistory",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Number = table.Column<int>(type: "int", nullable: false),
+                    ClassId = table.Column<int>(type: "int", nullable: false),
+                    StudentId = table.Column<int>(type: "int", nullable: false),
+                    SchoolYearId = table.Column<int>(type: "int", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "GETDATE()"),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime", nullable: true),
+                    CreatedBy = table.Column<int>(type: "int", nullable: false),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StudentHistory", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_StudentHistory_Class_ClassId",
+                        column: x => x.ClassId,
+                        principalTable: "Class",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_StudentHistory_SchoolYear_SchoolYearId",
+                        column: x => x.SchoolYearId,
+                        principalTable: "SchoolYear",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_StudentHistory_Student_StudentId",
+                        column: x => x.StudentId,
+                        principalTable: "Student",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Subject",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
+                    ClassId = table.Column<int>(type: "int", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "GETDATE()"),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime", nullable: true),
+                    CreatedBy = table.Column<int>(type: "int", nullable: false),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Subject", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Subject_Class_ClassId",
+                        column: x => x.ClassId,
+                        principalTable: "Class",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ClassCalendar",
                 columns: table => new
                 {
@@ -323,45 +370,6 @@ namespace School.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "StudentHistory",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Number = table.Column<int>(type: "int", nullable: false),
-                    ClassId = table.Column<int>(type: "int", nullable: false),
-                    StudentId = table.Column<int>(type: "int", nullable: false),
-                    SchoolYearId = table.Column<int>(type: "int", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
-                    CreatedAt = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "GETDATE()"),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime", nullable: true),
-                    CreatedBy = table.Column<int>(type: "int", nullable: false),
-                    UpdatedBy = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_StudentHistory", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_StudentHistory_Class_ClassId",
-                        column: x => x.ClassId,
-                        principalTable: "Class",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_StudentHistory_SchoolYear_SchoolYearId",
-                        column: x => x.SchoolYearId,
-                        principalTable: "SchoolYear",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_StudentHistory_Student_StudentId",
-                        column: x => x.StudentId,
-                        principalTable: "Student",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Attendance",
                 columns: table => new
                 {
@@ -403,21 +411,22 @@ namespace School.Infrastructure.Migrations
             migrationBuilder.InsertData(
                 table: "School",
                 columns: new[] { "Id", "CreatedAt", "CreatedBy", "Description", "IsActive", "Name", "UpdatedAt", "UpdatedBy" },
-                values: new object[] { 1, new DateTime(2024, 3, 13, 16, 29, 52, 578, DateTimeKind.Local).AddTicks(7588), 1, "AdminSchool", false, "AdminSchool", null, null });
+                values: new object[] { 1, new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "AdminSchool", false, "AdminSchool", null, null });
 
             migrationBuilder.InsertData(
                 table: "School",
                 columns: new[] { "Id", "CreatedAt", "CreatedBy", "Description", "Name", "UpdatedAt", "UpdatedBy" },
-                values: new object[] { 2, new DateTime(2024, 3, 13, 16, 29, 52, 580, DateTimeKind.Local).AddTicks(6489), 1, "Vitale", "Vitale", null, null });
+                values: new object[] { 2, new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Vitale", "Vitale", null, null });
 
             migrationBuilder.InsertData(
                 table: "SysParam",
                 columns: new[] { "Id", "Code", "CreatedAt", "CreatedBy", "Description", "Title", "UpdatedAt", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, "ATTENDANCE_STATUS", new DateTime(2024, 3, 13, 16, 29, 52, 580, DateTimeKind.Local).AddTicks(6303), 1, "Présence", "Présence", null, null },
-                    { 2, "CLASS_LEVEL", new DateTime(2024, 3, 13, 16, 29, 52, 580, DateTimeKind.Local).AddTicks(6330), 1, "Niveau", "Niveau", null, null },
-                    { 3, "DAY_OF_WEEK", new DateTime(2024, 3, 13, 16, 29, 52, 580, DateTimeKind.Local).AddTicks(6425), 1, "Jours de la semaine", "Jours de la semaine", null, null }
+                    { 1, "ATTENDANCE_STATUS", new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Présence", "Présence", null, null },
+                    { 2, "CLASS_LEVEL", new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Niveau", "Niveau", null, null },
+                    { 3, "DAY_OF_WEEK", new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Jours de la semaine", "Jours de la semaine", null, null },
+                    { 4, "ERRORS", new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Errors", "Errors", null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -425,39 +434,53 @@ namespace School.Infrastructure.Migrations
                 columns: new[] { "Id", "CreatedAt", "CreatedBy", "DOB", "Description", "Firstname", "Gender", "IsSuper", "Lastname", "Login", "Password", "SchoolId", "UpdatedAt", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 3, 13, 16, 29, 52, 580, DateTimeKind.Local).AddTicks(6283), 1, new DateTime(2024, 3, 13, 16, 29, 52, 578, DateTimeKind.Local).AddTicks(7633), null, "Admin", "M", true, "Admin", "Admin", "9d1dcd944007aae2128b93513c1ed1eb3e4fa952a356d51205d82f2b668d6438", 1, null, null },
-                    { 2, new DateTime(2024, 3, 13, 16, 29, 52, 582, DateTimeKind.Local).AddTicks(4894), 1, new DateTime(2024, 3, 13, 16, 29, 52, 580, DateTimeKind.Local).AddTicks(6497), null, "Camil", "M", false, "Vitale", "vitale@gmail.com", "9683f1c52eb029d8550223700c87e3e21127c5142301c2be1f0670ca65c9f1b0", 2, null, null }
+                    { 1, new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Admin", "M", true, "Admin", "Admin", "9d1dcd944007aae2128b93513c1ed1eb3e4fa952a356d51205d82f2b668d6438", 1, null, null },
+                    { 2, new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Camil", "M", false, "Vitale", "vitale@gmail.com", "9683f1c52eb029d8550223700c87e3e21127c5142301c2be1f0670ca65c9f1b0", 2, null, null }
                 });
 
             migrationBuilder.InsertData(
                 table: "SchoolYear",
                 columns: new[] { "Id", "CreatedAt", "CreatedBy", "EndDate", "SchoolId", "StartDate", "UpdatedAt", "UpdatedBy" },
-                values: new object[] { 1, new DateTime(2024, 3, 13, 16, 29, 52, 582, DateTimeKind.Local).AddTicks(4912), 2, new DateTime(2024, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, new DateTime(2023, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null });
+                values: new object[] { 1, new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, new DateTime(2024, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, new DateTime(2023, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null });
 
             migrationBuilder.InsertData(
                 table: "SysParamValue",
                 columns: new[] { "Id", "Code", "CreatedAt", "CreatedBy", "DecimalValue1", "IntValue1", "LongText1", "ShortText1", "SysParamId", "UpdatedAt", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, "PRESENT", new DateTime(2024, 3, 13, 16, 29, 52, 580, DateTimeKind.Local).AddTicks(6315), 1, null, null, null, "Present", 1, null, null },
-                    { 2, "ABSENT", new DateTime(2024, 3, 13, 16, 29, 52, 580, DateTimeKind.Local).AddTicks(6323), 2, null, null, null, "Absent", 1, null, null },
-                    { 3, "CLASS_LEVEL_1", new DateTime(2024, 3, 13, 16, 29, 52, 580, DateTimeKind.Local).AddTicks(6338), 1, null, 1, null, "Petite section", 2, null, null },
-                    { 4, "CLASS_LEVEL_2", new DateTime(2024, 3, 13, 16, 29, 52, 580, DateTimeKind.Local).AddTicks(6345), 2, null, 2, null, "Moyenne section", 2, null, null },
-                    { 5, "CLASS_LEVEL_3", new DateTime(2024, 3, 13, 16, 29, 52, 580, DateTimeKind.Local).AddTicks(6370), 3, null, 3, null, "Grande section", 2, null, null },
-                    { 6, "CLASS_LEVEL_4", new DateTime(2024, 3, 13, 16, 29, 52, 580, DateTimeKind.Local).AddTicks(6379), 4, null, 4, null, "Maternelle", 2, null, null },
-                    { 7, "CLASS_LEVEL_5", new DateTime(2024, 3, 13, 16, 29, 52, 580, DateTimeKind.Local).AddTicks(6386), 5, null, 5, null, "12 ème", 2, null, null },
-                    { 8, "CLASS_LEVEL_6", new DateTime(2024, 3, 13, 16, 29, 52, 580, DateTimeKind.Local).AddTicks(6392), 6, null, 6, null, "11 ème", 2, null, null },
-                    { 9, "CLASS_LEVEL_7", new DateTime(2024, 3, 13, 16, 29, 52, 580, DateTimeKind.Local).AddTicks(6398), 7, null, 7, null, "10 ème", 2, null, null },
-                    { 10, "CLASS_LEVEL_8", new DateTime(2024, 3, 13, 16, 29, 52, 580, DateTimeKind.Local).AddTicks(6407), 8, null, 8, null, "0 ème", 2, null, null },
-                    { 11, "CLASS_LEVEL_9", new DateTime(2024, 3, 13, 16, 29, 52, 580, DateTimeKind.Local).AddTicks(6413), 9, null, 9, null, "8 ème", 2, null, null },
-                    { 12, "CLASS_LEVEL_10", new DateTime(2024, 3, 13, 16, 29, 52, 580, DateTimeKind.Local).AddTicks(6419), 10, null, 10, null, "7 ème", 2, null, null },
-                    { 13, "MONDAY", new DateTime(2024, 3, 13, 16, 29, 52, 580, DateTimeKind.Local).AddTicks(6431), 13, null, 1, null, "Lundi", 3, null, null },
-                    { 14, "TUESDAY", new DateTime(2024, 3, 13, 16, 29, 52, 580, DateTimeKind.Local).AddTicks(6437), 14, null, 2, null, "Mardi", 3, null, null },
-                    { 15, "WEDNESDAY", new DateTime(2024, 3, 13, 16, 29, 52, 580, DateTimeKind.Local).AddTicks(6443), 15, null, 3, null, "Mercredi", 3, null, null },
-                    { 16, "THURSDAY", new DateTime(2024, 3, 13, 16, 29, 52, 580, DateTimeKind.Local).AddTicks(6449), 16, null, 4, null, "Jeudi", 3, null, null },
-                    { 17, "FRIDAY", new DateTime(2024, 3, 13, 16, 29, 52, 580, DateTimeKind.Local).AddTicks(6455), 17, null, 5, null, "Vendredi", 3, null, null },
-                    { 18, "SATURDAY", new DateTime(2024, 3, 13, 16, 29, 52, 580, DateTimeKind.Local).AddTicks(6461), 18, null, 6, null, "Samedi", 3, null, null },
-                    { 19, "SUNDAY", new DateTime(2024, 3, 13, 16, 29, 52, 580, DateTimeKind.Local).AddTicks(6467), 19, null, 7, null, "Dimanche", 3, null, null }
+                    { 1, "PRESENT", new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, null, null, "Present", 1, null, null },
+                    { 2, "ABSENT", new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, null, null, "Absent", 1, null, null },
+                    { 3, "CLASS_LEVEL_1", new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, 1, null, "Petite section", 2, null, null },
+                    { 4, "CLASS_LEVEL_2", new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, 2, null, "Moyenne section", 2, null, null },
+                    { 5, "CLASS_LEVEL_3", new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, 3, null, "Grande section", 2, null, null },
+                    { 6, "CLASS_LEVEL_4", new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, 4, null, "Maternelle", 2, null, null },
+                    { 7, "CLASS_LEVEL_5", new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, 5, null, "12 ème", 2, null, null },
+                    { 8, "CLASS_LEVEL_6", new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, 6, null, "11 ème", 2, null, null },
+                    { 9, "CLASS_LEVEL_7", new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, 7, null, "10 ème", 2, null, null },
+                    { 10, "CLASS_LEVEL_8", new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, 8, null, "0 ème", 2, null, null },
+                    { 11, "CLASS_LEVEL_9", new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, 9, null, "8 ème", 2, null, null },
+                    { 12, "CLASS_LEVEL_10", new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, 10, null, "7 ème", 2, null, null },
+                    { 13, "MONDAY", new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, 1, null, "Lundi", 3, null, null },
+                    { 14, "TUESDAY", new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, 2, null, "Mardi", 3, null, null },
+                    { 15, "WEDNESDAY", new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, 3, null, "Mercredi", 3, null, null },
+                    { 16, "THURSDAY", new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, 4, null, "Jeudi", 3, null, null },
+                    { 17, "FRIDAY", new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, 5, null, "Vendredi", 3, null, null },
+                    { 18, "SATURDAY", new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, 6, null, "Samedi", 3, null, null },
+                    { 19, "SUNDAY", new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, 7, null, "Dimanche", 3, null, null },
+                    { 20, "40001", new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, null, "School name is mandatory", "Name", 4, null, null },
+                    { 21, "40002", new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, null, "Invalid UserId while creating token", "UserId", 4, null, null },
+                    { 22, "40003", new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, null, "Invalid UserRole while creating token", "UserRole", 4, null, null },
+                    { 24, "40004", new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, null, "Invalid Login or Password", "Credentials", 4, null, null },
+                    { 25, "40005", new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, null, "Invalid Firstname", "Firstname", 4, null, null },
+                    { 26, "40006", new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, null, "Invalid Lastname", "Lastname", 4, null, null },
+                    { 27, "40007", new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, null, "Invalid Birthdate", "Birthdate", 4, null, null },
+                    { 28, "40008", new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, null, "Invalid Birthdate format. The valid format is 'dd/MM/yyyy'", "Birthdate", 4, null, null },
+                    { 29, "40009", new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, null, "Invalid Gender. The only valid gender is 'M' or 'F'", "Gender", 4, null, null },
+                    { 30, "40010", new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, null, "Invalid Login for Admin", "Login", 4, null, null },
+                    { 40, "40011", new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, null, "Invalid Password", "Password", 4, null, null },
+                    { 41, "40012", new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, null, "The specified school does not exist", "SchoolID", 4, null, null },
+                    { 42, "40013", new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, null, "The specified login already exist", "Login", 4, null, null },
+                    { 43, "40014", new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, null, null, "The password length must be greater than 10 characters", "Password", 4, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -465,13 +488,13 @@ namespace School.Infrastructure.Migrations
                 columns: new[] { "Id", "CreatedAt", "CreatedBy", "Description", "Level_Id", "Name", "SchoolId", "UpdatedAt", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 3, 13, 16, 29, 52, 582, DateTimeKind.Local).AddTicks(4923), 2, "", 6, "Maternnel", 2, null, null },
-                    { 2, new DateTime(2024, 3, 13, 16, 29, 52, 582, DateTimeKind.Local).AddTicks(4931), 2, "", 7, "12 ème", 2, null, null },
-                    { 3, new DateTime(2024, 3, 13, 16, 29, 52, 582, DateTimeKind.Local).AddTicks(4937), 2, "", 8, "11 ème", 2, null, null },
-                    { 4, new DateTime(2024, 3, 13, 16, 29, 52, 582, DateTimeKind.Local).AddTicks(4943), 2, "", 9, "10 ème", 2, null, null },
-                    { 5, new DateTime(2024, 3, 13, 16, 29, 52, 582, DateTimeKind.Local).AddTicks(4949), 2, "", 10, "9 ème", 2, null, null },
-                    { 6, new DateTime(2024, 3, 13, 16, 29, 52, 582, DateTimeKind.Local).AddTicks(4956), 2, "", 11, "8 ème", 2, null, null },
-                    { 7, new DateTime(2024, 3, 13, 16, 29, 52, 582, DateTimeKind.Local).AddTicks(4962), 2, "", 12, "7 ème", 2, null, null }
+                    { 1, new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "", 6, "Maternnel", 2, null, null },
+                    { 2, new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "", 7, "12 ème", 2, null, null },
+                    { 3, new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "", 8, "11 ème", 2, null, null },
+                    { 4, new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "", 9, "10 ème", 2, null, null },
+                    { 5, new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "", 10, "9 ème", 2, null, null },
+                    { 6, new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "", 11, "8 ème", 2, null, null },
+                    { 7, new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "", 12, "7 ème", 2, null, null }
                 });
 
             migrationBuilder.CreateIndex(
@@ -550,6 +573,11 @@ namespace School.Infrastructure.Migrations
                 column: "StudentId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Subject_ClassId",
+                table: "Subject",
+                column: "ClassId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_SysParamValue_SysParamId",
                 table: "SysParamValue",
                 column: "SysParamId");
@@ -582,9 +610,6 @@ namespace School.Infrastructure.Migrations
                 name: "Student");
 
             migrationBuilder.DropTable(
-                name: "Class");
-
-            migrationBuilder.DropTable(
                 name: "SchoolYear");
 
             migrationBuilder.DropTable(
@@ -594,10 +619,13 @@ namespace School.Infrastructure.Migrations
                 name: "Teacher");
 
             migrationBuilder.DropTable(
-                name: "SysParamValue");
+                name: "Class");
 
             migrationBuilder.DropTable(
                 name: "School");
+
+            migrationBuilder.DropTable(
+                name: "SysParamValue");
 
             migrationBuilder.DropTable(
                 name: "SysParam");

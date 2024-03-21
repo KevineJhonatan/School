@@ -12,6 +12,8 @@ namespace School.Core.Interfaces.Services
         string GeneratePassword();
 
         void CreateAdmin(CreateAdminReq request, int userId);
-        
+
+        void UpdateAdminPassword(UpdateAdminPasswordReq request, int userId);
+
     }
 }

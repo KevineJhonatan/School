@@ -126,5 +126,31 @@ namespace School.API.Controllers
             }
             return Ok(response);
         }
+
+        [HttpPost("UpdateAdminPassword")]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        //TODO [Authorize(Roles = nameof(UserRole.SuperAdmin))]
+        public IActionResult UpdateAdminPassword(UpdateAdminPasswordReq request)
+        {
+            ApiResponse response = new ApiResponse();
+            try
+            {
+                int userId = 1; //TODO int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+                _SuperAdminService.UpdateAdminPassword(request, userId);
+            }
+            catch (ExceptionBase ex)
+            {
+                response.Success = false;
+                response.Errors = ex.Errors;
+            }
+            catch (Exception ex)
+            {
+                response.Success = false;
+                response.Errors = ExceptionBase.FetchInnerException(ex);
+            }
+            return Ok(response);
+        }
     }
 }

@@ -7,5 +7,7 @@
         public const int TOKEN_EXPIRATION_HOUR = 5;
 
         public const string SYSPARAM_ERRORS = "ERRORS";
+
+        public const int PASSWORD_LENGTH = 10;
     }
 }

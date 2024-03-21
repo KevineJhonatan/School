@@ -20,10 +20,6 @@
 
         public const int INVALID_LOGIN_PASSWORD_ERROR_CODE = 40004;
 
-        /*
-         * TODO Create Errors in the SchoolContext for migration
-         */
-
         public const int INVALID_ADMIN_FIRSTNAME_ERROR_CODE = 40005;
 
         public const int INVALID_ADMIN_LASTNAME_ERROR_CODE = 40006;
@@ -41,5 +37,9 @@
         public const int INEXISTING_SCHOOL_ERROR_CODE = 40012;
 
         public const int EXISTING_ADMIN_LOGIN_ERROR_CODE = 40013;
+
+        public const int INVALID_PASSWORD_LENGTH_ERROR_CODE = 40014;
+
+        public const int INEXISTING_ADMIN_USER_ERROR_CODE = 40015;
     }
 }

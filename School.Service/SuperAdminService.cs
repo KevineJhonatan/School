@@ -6,9 +6,7 @@ using School.Core.Helpers;
 using School.Core.Interfaces.Services;
 using School.Core.JsonRequest.SuperAdmin;
 using School.Core.JsonResponse;
-using School.Infrastructure;
 using School.Infrastructure.Interfaces;
-using System;
 using Ecole = School.Core.Entities.School;
 
 namespace School.Service
@@ -55,7 +53,7 @@ namespace School.Service
                 errors.Add(_SysParamRepo.GetErrorByCode(Error.INVALID_ADMIN_DOB_FORMAT_ERROR_CODE));
 
             if (string.IsNullOrEmpty(request.Gender) || (request.Gender.ToUpper() != ((char)Gender.Male).ToString() && request.Gender.ToUpper() != ((char)Gender.Female).ToString()))
-                errors.Add(_SysParamRepo.GetErrorByCode(Error.INVALID_ADMIN_GENDER_ERROR_CODE));            
+                errors.Add(_SysParamRepo.GetErrorByCode(Error.INVALID_ADMIN_GENDER_ERROR_CODE));
 
             if (string.IsNullOrEmpty(request.Login))
                 errors.Add(_SysParamRepo.GetErrorByCode(Error.INVALID_ADMIN_LOGIN_ERROR_CODE));
@@ -70,18 +68,14 @@ namespace School.Service
             var admin = _AdminRepo.FindByLogin(request.Login);
             if (admin is not null)
             {
-                var adminError = _SysParamRepo.GetErrorByCode(Error.EXISTING_ADMIN_LOGIN_ERROR_CODE);
-                adminError.Message = $"{adminError.Message} Login = '{request.Login}'";
-                errors.Add(adminError);
+                errors.Add(_SysParamRepo.GetErrorByCode(Error.EXISTING_ADMIN_LOGIN_ERROR_CODE, $" Login = '{request.Login}'"));
                 throw new ExceptionBase(errors);
             }
 
             var school = _SchoolRepo.Find(request.SchoolId).FirstOrDefault();
             if (school is null || !school.IsActive.Value)
             {
-                var schoolIdError = _SysParamRepo.GetErrorByCode(Error.INEXISTING_SCHOOL_ERROR_CODE);
-                schoolIdError.Message = $"{schoolIdError.Message} SchoolID = {request.SchoolId}";
-                errors.Add(schoolIdError);
+                errors.Add(_SysParamRepo.GetErrorByCode(Error.INEXISTING_SCHOOL_ERROR_CODE, $" SchoolID = {request.SchoolId}"));
                 throw new ExceptionBase(errors);
             }
 
@@ -91,7 +85,7 @@ namespace School.Service
                 Lastname = request.Lastname,
                 DOB = newDob,
                 Gender = request.Gender.ToUpper()[0],
-                Login = request.Login, 
+                Login = request.Login,
                 Password = request.Password.HashPassword(),
                 Description = request.Description,
                 IsSuper = false,
@@ -130,6 +124,22 @@ namespace School.Service
                 throw new ExceptionBase(new List<Error> { _SysParamRepo.GetErrorByCode(Error.INVALID_LOGIN_PASSWORD_ERROR_CODE) });
 
             return admin;
+        }
+
+        public void UpdateAdminPassword(UpdateAdminPasswordReq request, int userId)
+        {
+            if (string.IsNullOrEmpty(request.NewPassword) || request.NewPassword.Length < Constants.PASSWORD_LENGTH)
+                throw new ExceptionBase(new List<Error> { _SysParamRepo.GetErrorByCode(Error.INVALID_PASSWORD_LENGTH_ERROR_CODE) });
+
+            var admin = _GenericAdminRepo.Find(id: request.AdminId).FirstOrDefault();
+
+            if (admin is null)
+                throw new ExceptionBase(new List<Error> { _SysParamRepo.GetErrorByCode(Error.INEXISTING_ADMIN_USER_ERROR_CODE, $" ID = {request.AdminId}") });
+
+            admin.Password = request.NewPassword.HashPassword();
+
+            _GenericAdminRepo.Update(admin);
+            _GenericAdminRepo.Commit();
         }
     }
 }

@@ -18,18 +18,18 @@ namespace School.Infrastructure
             && x.Code == valueCode && (bool)x.IsActive);
         }
 
-        public Error GetErrorByCode(int errorCode)
+        public Error GetErrorByCode(int errorCode, string extensionMessage = "")
         {
             var sysparamError = _Context.SysParamValues.Include(x => x.SysParam).FirstOrDefault(x => x.SysParam != null && x.SysParam.Code == Constants.SYSPARAM_ERRORS && (bool)x.SysParam.IsActive
            && x.Code == errorCode.ToString() && (bool)x.IsActive);
 
             if (sysparamError is null)
-                return new Error();
+                return new Error { ErrorCode = errorCode };
 
             return new Error
             {
                 ErrorCode = errorCode,
-                Message = sysparamError.LongText1,
+                Message = $"{sysparamError.LongText1}{extensionMessage}",
                 Source = sysparamError.ShortText1
             };
         }

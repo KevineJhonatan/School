@@ -7,6 +7,6 @@ namespace School.Infrastructure.Interfaces
     {
         SysParamValue FindByCode(string sysParamCode, string valueCode);
 
-        Error GetErrorByCode(int errorCode);
+        Error GetErrorByCode(int errorCode, string extensionMessage = "");
     }
 }
