@@ -105,7 +105,7 @@ namespace School.API.Controllers
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [Authorize(Roles = nameof(UserRole.SuperAdmin))]
+        //TODO [Authorize(Roles = nameof(UserRole.SuperAdmin))]
         public IActionResult GeneratePassword()
         {
             ApiResponse response = new ApiResponse();

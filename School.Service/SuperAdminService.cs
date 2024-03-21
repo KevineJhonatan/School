@@ -105,13 +105,17 @@ namespace School.Service
         public string GeneratePassword()
         {
             Random random = new Random();
-            string upper = ((char)random.Next('A', 'Z' + 1)).ToString();
-            string lower = ((char)random.Next('a', 'z' + 1)).ToString();
+            string upper1 = ((char)random.Next('A', 'Z' + 1)).ToString();
+            string lower1 = ((char)random.Next('a', 'z' + 1)).ToString();
             string specialChars = "@#$+*!?";
-            string special = (specialChars[random.Next(specialChars.Length)]).ToString();
-            string hash = DateTime.Now.ToString().HashPassword();
+            string special1 = (specialChars[random.Next(specialChars.Length)]).ToString();
+            int randomNumber = random.Next(1000, 9999);
 
-            return $"{upper}{lower}{special}{hash.Substring(0, 5)}";
+            string upper2 = ((char)random.Next('A', 'Z' + 1)).ToString();
+            string lower2 = ((char)random.Next('a', 'z' + 1)).ToString();
+            string special2 = (specialChars[random.Next(specialChars.Length)]).ToString();
+
+            return $"{upper1}{lower1}{special1}{randomNumber}{upper2}{lower2}{special2}";
         }
 
         public Admin Login(LoginReq request)
