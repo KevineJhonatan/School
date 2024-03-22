@@ -9,5 +9,7 @@ namespace School.Core.Interfaces.Services
         Admin Login(LoginReq request);
 
         void CreateSchoolYear(CreateSchoolYearReq request, int userId);
+
+        void CreateClass(CreateClassReq request, int userId);
     }
 }

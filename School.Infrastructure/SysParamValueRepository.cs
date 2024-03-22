@@ -12,7 +12,12 @@ namespace School.Infrastructure
         {
         }
 
-        public SysParamValue FindByCode(string sysParamCode, string valueCode)
+        public IList<SysParamValue> FindAllValuesByCode(string sysParamCode)
+        {
+            return _Context.SysParamValues.Include(x => x.SysParam).Where(x => x.SysParam != null && x.SysParam.Code == sysParamCode && (bool)x.SysParam.IsActive && (bool)x.IsActive).ToList();
+        }
+
+        public SysParamValue FindValueByCode(string sysParamCode, string valueCode)
         {
             return _Context.SysParamValues.Include(x => x.SysParam).FirstOrDefault(x => x.SysParam != null && x.SysParam.Code == sysParamCode && (bool)x.SysParam.IsActive 
             && x.Code == valueCode && (bool)x.IsActive);

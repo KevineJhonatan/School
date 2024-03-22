@@ -77,5 +77,31 @@ namespace School.API.Controllers
             }
             return Ok(response);
         }
+
+        [HttpPost("CreateClass")]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [Authorize(Roles = nameof(UserRole.Admin))]
+        public IActionResult CreateClass([FromBody] CreateClassReq request)
+        {
+            ApiResponse response = new ApiResponse();
+            try
+            {
+                int userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+                _AdminService.CreateClass(request, userId);
+            }
+            catch (ExceptionBase ex)
+            {
+                response.Success = false;
+                response.Errors = ex.Errors;
+            }
+            catch (Exception ex)
+            {
+                response.Success = false;
+                response.Errors = ExceptionBase.FetchInnerException(ex);
+            }
+            return Ok(response);
+        }
     }
 }

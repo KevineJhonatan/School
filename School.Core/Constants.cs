@@ -8,6 +8,8 @@
 
         public const string SYSPARAM_ERRORS = "ERRORS";
 
+        public const string SYSPARAM_CLASS_LEVELS = "CLASS_LEVEL";
+
         public const int PASSWORD_LENGTH = 10;
     }
 }

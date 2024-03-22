@@ -5,7 +5,9 @@ namespace School.Infrastructure.Interfaces
 {
     public interface ISysParamValueRepository
     {
-        SysParamValue FindByCode(string sysParamCode, string valueCode);
+        SysParamValue FindValueByCode(string sysParamCode, string valueCode);
+
+        IList<SysParamValue> FindAllValuesByCode(string sysParamCode);
 
         Error GetErrorByCode(int errorCode, string extensionMessage = "");
     }

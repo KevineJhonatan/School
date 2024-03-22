@@ -1,4 +1,5 @@
-﻿using School.Core.Entities;
+﻿using School.Core;
+using School.Core.Entities;
 using School.Core.Exceptions;
 using School.Core.Helpers;
 using School.Core.Interfaces.Services;
@@ -22,14 +23,47 @@ namespace School.Service
 
         private readonly IGenericRepository<SchoolYear> _GenericSchoolYearRepo;
 
-        public AdminService(ISysParamValueRepository sysParamRepo, IAdminRepo adminRepo, IGenericRepository<Ecole> schoolRepo, IGenericRepository<Admin> genericAdminRepo, IGenericRepository<SchoolYear> genericSchoolYearRepo)
+        private readonly ISysParamValueRepository _SysParamValueRepository;
+
+        private readonly IGenericRepository<Class> _ClassRepo;
+
+        public AdminService(ISysParamValueRepository sysParamRepo, IAdminRepo adminRepo, IGenericRepository<Ecole> schoolRepo, IGenericRepository<Admin> genericAdminRepo,
+            IGenericRepository<SchoolYear> genericSchoolYearRepo, ISysParamValueRepository sysParamValueRepository, IGenericRepository<Class> classRepo)
         {
             _SysParamRepo = sysParamRepo;
             _AdminRepo = adminRepo;
             _SchoolRepo = schoolRepo;
             _GenericAdminRepo = genericAdminRepo;
             _GenericSchoolYearRepo = genericSchoolYearRepo;
+            _SysParamValueRepository = sysParamValueRepository;
+            _ClassRepo = classRepo;
+        }
 
+        public void CreateClass(CreateClassReq request, int userId)
+        {
+            if(string.IsNullOrEmpty(request.Name))
+                throw new ExceptionBase(new List<Error> { _SysParamRepo.GetErrorByCode(Error.INVALID_CLASS_NAME_ERROR_CODE) });
+
+            var school = _SchoolRepo.Find(id: request.SchoolId).FirstOrDefault();
+
+            if (school is null || !(bool)school.IsActive)
+                throw new ExceptionBase(new List<Error> { _SysParamRepo.GetErrorByCode(Error.INEXISTING_SCHOOL_ERROR_CODE, $" SchoolId = {request.SchoolId}") });
+
+            var level = _SysParamValueRepository.FindAllValuesByCode(Constants.SYSPARAM_CLASS_LEVELS).FirstOrDefault(x => x.Id == request.LevelId);
+
+            if (level is null)
+                throw new ExceptionBase(new List<Error> { _SysParamRepo.GetErrorByCode(Error.INEXISTING_LEVEL_ERROR_CODE, $" LevelId = {request.LevelId}") });
+
+            var newClass = new Class
+            {
+                Name = request.Name,
+                Description = request.Description,
+                Level_Id = request.LevelId,
+                SchoolId = request.SchoolId,
+                CreatedBy = userId
+            };
+            _ClassRepo.Insert(newClass);
+            _ClassRepo.Commit();
         }
 
         public void CreateSchoolYear(CreateSchoolYearReq request, int userId)
@@ -39,7 +73,7 @@ namespace School.Service
 
             var school = _SchoolRepo.Find(id: request.SchoolId).FirstOrDefault();
 
-            if(school is null)
+            if(school is null || !(bool)school.IsActive)
                 throw new ExceptionBase(new List<Error> { _SysParamRepo.GetErrorByCode(Error.INEXISTING_SCHOOL_ERROR_CODE, $" SchoolId = {request.SchoolId}") });
 
             var currentUser = _GenericAdminRepo.Find(id: userId).FirstOrDefault();

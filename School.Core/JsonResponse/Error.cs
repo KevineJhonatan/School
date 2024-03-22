@@ -42,12 +42,12 @@
 
         public const int INEXISTING_ADMIN_USER_ERROR_CODE = 40015;
 
-        /**
-         * TODO
-         */
-
         public const int INVALID_SCHOOLYEAR_DATE_ERROR_CODE = 40016;
 
         public const int INVALID_SCHOOL_APPARTENANCE_ERROR_CODE = 40017;
+
+        public const int INVALID_CLASS_NAME_ERROR_CODE = 40018;
+
+        public const int INEXISTING_LEVEL_ERROR_CODE = 40019;
     }
 }
