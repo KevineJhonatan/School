@@ -41,5 +41,13 @@
         public const int INVALID_PASSWORD_LENGTH_ERROR_CODE = 40014;
 
         public const int INEXISTING_ADMIN_USER_ERROR_CODE = 40015;
+
+        /**
+         * TODO
+         */
+
+        public const int INVALID_SCHOOLYEAR_DATE_ERROR_CODE = 40016;
+
+        public const int INVALID_SCHOOL_APPARTENANCE_ERROR_CODE = 40017;
     }
 }

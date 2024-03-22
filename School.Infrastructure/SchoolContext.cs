@@ -189,6 +189,8 @@ namespace School.Infrastructure
             modelBuilder.Entity<SysParamValue>().HasData(new SysParamValue { Id = 42, Code = Error.EXISTING_ADMIN_LOGIN_ERROR_CODE.ToString(), ShortText1 = "Login", LongText1 = "The specified login already exist.", SysParamId = 4, CreatedAt = createdDate, CreatedBy = 1 });
             modelBuilder.Entity<SysParamValue>().HasData(new SysParamValue { Id = 43, Code = Error.INVALID_PASSWORD_LENGTH_ERROR_CODE.ToString(), ShortText1 = "Password", LongText1 = $"The password must contains at least {Constants.PASSWORD_LENGTH} characters.", SysParamId = 4, CreatedAt = createdDate, CreatedBy = 1 });
             modelBuilder.Entity<SysParamValue>().HasData(new SysParamValue { Id = 44, Code = Error.INEXISTING_ADMIN_USER_ERROR_CODE.ToString(), ShortText1 = "User", LongText1 = $"The admin user does not exist.", SysParamId = 4, CreatedAt = createdDate, CreatedBy = 1 });
+            modelBuilder.Entity<SysParamValue>().HasData(new SysParamValue { Id = 45, Code = Error.INVALID_SCHOOLYEAR_DATE_ERROR_CODE.ToString(), ShortText1 = "SchoolYearDate", LongText1 = $"The EndDate must be greater than StartDate.", SysParamId = 4, CreatedAt = createdDate, CreatedBy = 1 });
+            modelBuilder.Entity<SysParamValue>().HasData(new SysParamValue { Id = 46, Code = Error.INVALID_SCHOOL_APPARTENANCE_ERROR_CODE.ToString(), ShortText1 = "School", LongText1 = $"The specified school does not belong to the user in session.", SysParamId = 4, CreatedAt = createdDate, CreatedBy = 1 });
 
             modelBuilder.Entity<Ecole>().HasData(
                new Ecole { Id = 2, Name = "Vitale", Description = "Vitale", CreatedBy = 1, CreatedAt = createdDate }
